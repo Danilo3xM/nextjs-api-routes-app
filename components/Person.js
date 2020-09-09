@@ -7,6 +7,7 @@ export default function Person({ person }) {
       <Link href="/person/[id]" as={`/person/${person.id}`}>
         <a>{person.nome}</a>
       </Link>
+      <img src={person.ico}/>
     </li>
   )
 }
