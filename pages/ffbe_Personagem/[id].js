@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import useSWR from 'swr'
+import useSWR from '../../../pages/ffbe_Personagem/node_modules/swr'
 
 const fetcher = async (url) => {
   const res = await fetch(url)
@@ -14,7 +14,7 @@ const fetcher = async (url) => {
 export default function Person() {
   const { query } = useRouter()
   const { data, error } = useSWR(
-    () => query.id && `/api/people/${query.id}`,
+    () => query.id && `/api/ffbe_Personagem/${query.id}`,
     fetcher
   )
 
@@ -25,24 +25,18 @@ export default function Person() {
     <table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Height</th>
-          <th>Mass</th>
-          <th>Hair color</th>
-          <th>Skin color</th>
-          <th>Eye color</th>
-          <th>Gender</th>
+          <th>Nome</th>
+          <th>Jogo Original</th>
+          <th>Classe</th>
+          <th>Elemento</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>{data.name}</td>
-          <td>{data.height}</td>
-          <td>{data.mass}</td>
-          <td>{data.hair_color}</td>
-          <td>{data.skin_color}</td>
-          <td>{data.eye_color}</td>
-          <td>{data.gender}</td>
+          <td>{data.nome}</td>
+          <td>{data.jogo}</td>
+          <td>{data.classe}</td>
+          <td>{data.elemento}</td>
         </tr>
       </tbody>
     </table>
