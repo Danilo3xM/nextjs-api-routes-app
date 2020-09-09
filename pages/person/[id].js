@@ -12,12 +12,6 @@ const fetcher = async (url) => {
   return data
 }
 
-function MyImage() {
-  return <img src="/my-image.png" alt="my image" />
-}
-
-export default MyImage
-
 export default function Person() {
   const { query } = useRouter()
   const { data, error } = useSWR(
@@ -31,12 +25,13 @@ export default function Person() {
   return (
     <table>
       <thead>
+        <tr><img src={data.portrait}/></tr>
         <tr>
           <th>Nome</th>
           <th>Jogo Original</th>
           <th>Classe</th>
           <th>Elemento</th>
-          <th>Portrait</th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -45,7 +40,7 @@ export default function Person() {
           <td>{data.jogo}</td>
           <td>{data.classe}</td>
           <td>{data.elemento}</td>
-          <img src={data.portrait} />
+          <td><img src={data.img_elemento}/></td>
         </tr>
       </tbody>
     </table>
