@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import styles from '../styles.module.css'
 
-export default function Personagem({ char }) {
+export default function Person({ person }) {
   return (
     <li className={styles.hello}>
-      <Link href="/char/[id]" as={`/char/${char.id}`}>
-        <a>{char.name}</a>
+      <Link href="/person/[id]" as={`/person/${person.id}`}>
+        <a>{person.nome}</a>
       </Link>
     </li>
   )

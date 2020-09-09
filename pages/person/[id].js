@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
-import useSWR from '../../../pages/ffbe_Personagem/node_modules/swr'
+import useSWR from 'swr'
+import { resolveHref } from 'next/dist/next-server/lib/router/router'
 
 const fetcher = async (url) => {
   const res = await fetch(url)
@@ -11,10 +12,16 @@ const fetcher = async (url) => {
   return data
 }
 
+function MyImage() {
+  return <img src="/my-image.png" alt="my image" />
+}
+
+export default MyImage
+
 export default function Person() {
   const { query } = useRouter()
   const { data, error } = useSWR(
-    () => query.id && `/api/ffbe_Personagem/${query.id}`,
+    () => query.id && `/api/people/${query.id}`,
     fetcher
   )
 
@@ -29,6 +36,7 @@ export default function Person() {
           <th>Jogo Original</th>
           <th>Classe</th>
           <th>Elemento</th>
+          <th>Portrait</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +45,7 @@ export default function Person() {
           <td>{data.jogo}</td>
           <td>{data.classe}</td>
           <td>{data.elemento}</td>
+          <img src={data.portrait} />
         </tr>
       </tbody>
     </table>
